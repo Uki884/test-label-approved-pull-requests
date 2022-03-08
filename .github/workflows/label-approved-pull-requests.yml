@@ -5,8 +5,10 @@ jobs:
     name: Label when approved
     runs-on: ubuntu-latest
     steps:
+    - name: echo
+      run: echo github.event.label.name
     - name: Label when approved
-      if: github.event.label.name != 'Do Not Merge'
+      if: github.event.label.name != 'Do+Not+Merge'
       uses: pullreminders/label-when-approved-action@master
       env:
         APPROVALS: "1"
