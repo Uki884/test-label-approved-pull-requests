@@ -1,0 +1,12 @@
+name-template: 'prod-$(TZ=Asia/Tokyo date +%Y%m%d-%H%M)'
+tag-template: 'prod-$(TZ=Asia/Tokyo date +%Y%m%d-%H%M)'
+template: |
+  ## Changes
+  $CHANGES
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'feature'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'bugfix'
