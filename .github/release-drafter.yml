@@ -1,5 +1,5 @@
-name-template: 'prod-$(TZ=Asia/Tokyo date +%Y%m%d-%H%M)'
-tag-template: 'prod-$(TZ=Asia/Tokyo date +%Y%m%d-%H%M)'
+name-template: '$RESOLVED_VERSION'
+tag-template: '$RESOLVED_VERSION'
 template: |
   ## Changes
   $CHANGES
