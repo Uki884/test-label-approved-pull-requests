@@ -72,12 +72,5 @@ jobs:
                   "type": "mrkdwn",
                   "text": ${{ toJSON(env.RELEASE_BODY) }}
                 }
-              },
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "${{ github.event.release.html_url }}"
-                }
               }
             ]
