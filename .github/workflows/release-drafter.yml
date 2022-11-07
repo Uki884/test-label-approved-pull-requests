@@ -84,15 +84,16 @@ jobs:
               {
                 "type": "actions",
                 "elements": [
-                {
-                  "type": "button",
-                  "text": {
-                  "type": "plain_text",
-                  "text": "リリースノート",
-                  "emoji": true
+                  {
+                    "type": "button",
+                    "text": {
+                    "type": "plain_text",
+                    "text": "リリースノート",
+                    "emoji": true
+                    },
+                    "value": "click_me_123",
+                    "url": "${{ fromJSON(env.RELEASE).url }}"
                   },
-                  "value": "click_me_123",
-                  "url": "${{ fromJSON(env.RELEASE).url }}"
-                },
+                ]
               }
             ]
