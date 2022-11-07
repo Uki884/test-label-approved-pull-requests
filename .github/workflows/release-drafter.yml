@@ -16,7 +16,7 @@ jobs:
       - name: Generate CalVer version
         id: calver
         run: |
-          export VERSION=prod-$(TZ=Asia/Tokyo date +%Y%m%d-%H%M)
+          export VERSION=stg-$(TZ=Asia/Tokyo date +%Y%m%d-%H%M)
           echo "::set-output name=tag_name::$VERSION"
       - uses: release-drafter/release-drafter@v5
         with:
