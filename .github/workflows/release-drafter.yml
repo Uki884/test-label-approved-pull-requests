@@ -28,22 +28,19 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - name: get Latest release
+      - name: get latest release
         run: |
           echo 'RELEASE<<EOF' >> $GITHUB_ENV
           echo $(curl -H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .) >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
       - id: get_release_note
-        name: echo release note
+        name: get release note
         run: |
           # 改行コードをエスケープする
           release_body='${{ fromJSON(env.RELEASE).body }}'
           release_body=${release_body//$'\r\n'/\\n}
           release_body=${release_body//$'\n'/\\n}
           echo "::set-output name=body::$release_body"
-      - name: test
-        run: |
-          echo "app_version is ${{ steps.get_release_note.outputs }}"
       - name: notify to Slack
         id: slack
         uses: tokorom/action-slack-incoming-webhook@main
@@ -57,7 +54,7 @@ jobs:
                 "type": "header",
                 "text": {
                   "type": "plain_text",
-                  "text": "${{ fromJSON(env.RELEASE).tag_name }} is published!"
+                  "text": "${{ fromJSON(env.RELEASE).tag_name }}"
                 }
               },
               {
@@ -71,7 +68,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "*Information:*"
+                  "text": "*リリース内容:*"
                 }
               },
               {
@@ -80,5 +77,22 @@ jobs:
                   "type": "mrkdwn",
                   "text": "${{ steps.get_release_note.outputs.body }}"
                 }
+              },
+              {
+                "type": "divider"
+              },
+              {
+                "type": "actions",
+                "elements": [
+                {
+                  "type": "button",
+                  "text": {
+                  "type": "plain_text",
+                  "text": "リリースノート",
+                  "emoji": true
+                  },
+                  "value": "click_me_123",
+                  "url": "${{ fromJSON(env.RELEASE).url }}"
+                },
               }
             ]
