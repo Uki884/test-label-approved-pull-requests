@@ -28,6 +28,11 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
+      - name: get Latest release
+        run: |
+          echo 'RELEASE_BODY<<EOF' >> $GITHUB_ENV
+          echo "$(curl -H 'Accept: application/vnd.github+json' -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .body | sed 's,",\\",g' | sed "s,',,g") >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
       - name: notify to Slack
         id: slack
         uses: tokorom/action-slack-incoming-webhook@main
