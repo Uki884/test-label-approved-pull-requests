@@ -78,7 +78,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": ${{ steps.get_release_note.outputs.body }}
+                  "text": "${{ steps.get_release_note.outputs.body }}""
                 }
               }
             ]
