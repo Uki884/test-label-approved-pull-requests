@@ -11,14 +11,19 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
+      - name: Get release
+        id: get_release
+        uses: agners/get-draft-release@v0.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}'
+      - name: test
+        run: |
+          echo ${{ steps.get_release.outputs }}
       - name: get latest release
         run: |
           echo 'RELEASE<<EOF' >> $GITHUB_ENV
           echo $(curl -H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .) >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
-      - name: test
-        run: |
-          echo ${{ fromJSON(env.RELEASE) }}
       - uses: actions/checkout@v2
       - run: |
           echo "${{ fromJSON(env.RELEASE).tag_name }}" > TAG_NAME
