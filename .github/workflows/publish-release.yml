@@ -16,6 +16,9 @@ jobs:
           echo 'RELEASE<<EOF' >> $GITHUB_ENV
           echo $(curl -H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .) >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
+      - name: test
+        run: |
+          echo ${{ fromJSON(env.RELEASE) }}
       - uses: actions/checkout@v2
       - run: |
           echo "${{ fromJSON(env.RELEASE).tag_name }}" > TAG_NAME
