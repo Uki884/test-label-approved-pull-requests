@@ -33,9 +33,6 @@ jobs:
           echo 'RELEASE<<EOF' >> $GITHUB_ENV
           echo $(curl -H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .) >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
-      - name: test
-        run: |
-          echo "app_version is ${{ env.RELEASE }}"
       - name: notify to Slack
         id: slack
         uses: tokorom/action-slack-incoming-webhook@main
