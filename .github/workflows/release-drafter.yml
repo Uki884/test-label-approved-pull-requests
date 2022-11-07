@@ -2,11 +2,6 @@ name: Release Drafter
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - master
-  # pull_request:
-  #   types: [opened, reopened, synchronize]
 
 permissions:
   contents: read
@@ -29,3 +24,13 @@ jobs:
           tag: ${{ steps.calver.outputs.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: notify to Slack
+        id: slack
+        uses: slackapi/slack-github-action@v1.16.0
+        with:
+          payload: |
+            {
+              "foo": "bar"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WORKFLOW_WEBHOOK_URL }}
