@@ -29,11 +29,6 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - name: get latest release
-        run: |
-          echo 'RELEASE<<EOF' >> $GITHUB_ENV
-          echo $(curl -H 'Accept: application/vnd.github+json' -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .) >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
       - id: get_release_note
         name: get release note
         run: |
