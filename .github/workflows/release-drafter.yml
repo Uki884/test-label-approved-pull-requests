@@ -36,7 +36,8 @@ jobs:
       - id: get_release_note
         name: get release note
         run: |
-          release_body='${{ fromJSON(env.RELEASE).body }}'
+          # 改行コードをエスケープする
+          release_body='${{ steps.create_release.outputs.body }}'
           release_body=${release_body//$'\r\n'/\\n}
           release_body=${release_body//$'\n'/\\n}
           echo "::set-output name=body::$release_body"
@@ -53,7 +54,7 @@ jobs:
                 "type": "header",
                 "text": {
                   "type": "plain_text",
-                  "text": "リリースノートが作成されました(${{ fromJSON(env.RELEASE).tag_name }})"
+                  "text": "リリースノートが作成されました(${{ steps.create_release.outputs.tag_name }})"
                 }
               },
               {
@@ -88,7 +89,7 @@ jobs:
                     "emoji": true
                     },
                     "value": "click_me_123",
-                    "url": "${{ fromJSON(env.RELEASE).html_url }}"
+                    "url": "${{ steps.create_release.outputs.html_url }}"
                   },
                 ]
               }
