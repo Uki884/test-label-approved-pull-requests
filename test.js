@@ -3,5 +3,5 @@ const test = () => {
   console.log('追加: テスト2')
   console.log("追加: テスト3");
   console.log("追加: テスト4");
-  console.log("追加: テスト4");
+  console.log("追加: テスト5");
 }
