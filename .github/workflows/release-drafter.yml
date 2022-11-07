@@ -35,7 +35,7 @@ jobs:
           echo 'EOF' >> $GITHUB_ENV
       - name: test
         run: |
-          echo "app_version is ${{ env.RELEASE_BODY }}"
+          echo "app_version is ${{ env.RELEASE_BODY['url'] }}"
       - name: notify to Slack
         id: slack
         uses: tokorom/action-slack-incoming-webhook@main
