@@ -19,6 +19,7 @@ jobs:
           export VERSION=stg-$(TZ=Asia/Tokyo date +%Y%m%d-%H%M)
           echo "::set-output name=tag_name::$VERSION"
       - uses: release-drafter/release-drafter@v5
+        id: create_release
         with:
           name: ${{ steps.calver.outputs.tag_name }}
           tag: ${{ steps.calver.outputs.tag_name }}
