@@ -36,7 +36,6 @@ jobs:
       - id: get_release_note
         name: get release note
         run: |
-          # 改行コードをエスケープする
           release_body='${{ fromJSON(env.RELEASE).body }}'
           release_body=${release_body//$'\r\n'/\\n}
           release_body=${release_body//$'\n'/\\n}
@@ -54,7 +53,7 @@ jobs:
                 "type": "header",
                 "text": {
                   "type": "plain_text",
-                  "text": "${{ fromJSON(env.RELEASE).tag_name }}"
+                  "text": "リリースノートが作成されました(${{ fromJSON(env.RELEASE).tag_name }})"
                 }
               },
               {
