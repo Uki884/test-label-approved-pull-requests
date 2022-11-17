@@ -9,5 +9,5 @@ const test = () => {
    console.log("追加: テスト7");
     console.log("追加: テストfas7");
     console.log("追加: fas");
-      console.log("追加: fas");      console.log("追加: fas");
+      console.log("追加: fas");    v  console.log("追加: fas");
 }
