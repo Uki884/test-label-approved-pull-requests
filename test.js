@@ -5,4 +5,5 @@ const test = () => {
   console.log("追加: テスト4");
   console.log("追加: テスト5");
   console.log("追加: テスト6");
+   console.log("追加: テスト6");
 }
