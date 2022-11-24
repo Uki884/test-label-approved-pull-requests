@@ -84,7 +84,7 @@ jobs:
                     "text": {
                     "type": "plain_text",
                     "text": "Productionリリース",
-                    "emoji": "true"
+                    "emoji": true
                     },
                     "confirm": {
                       "title": {
