@@ -84,7 +84,7 @@ jobs:
                     "text": {
                     "type": "plain_text",
                     "text": "Productionリリース",
-                    "emoji": true
+                    "emoji": "true"
                     },
                     "confirm": {
                       "title": {
@@ -92,8 +92,8 @@ jobs:
                         "text": "確認",
                       },
                       "text": {
-                        "type": "mrkdwn",
-                        "text": `Productionリリースを開始しますか？`,
+                        "type": "plain_text",
+                        "text": "Productionリリースを開始しますか？",
                       },
                       "deny": {
                         "type": "plain_text",
