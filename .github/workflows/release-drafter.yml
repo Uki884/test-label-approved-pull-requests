@@ -25,6 +25,7 @@ jobs:
         with:
           name: ${{ steps.calver.outputs.tag_name }}
           tag: ${{ steps.calver.outputs.tag_name }}
+          publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Dump Github context
@@ -39,56 +40,56 @@ jobs:
           release_body=${release_body//$'\r\n'/\\n}
           release_body=${release_body//$'\n'/\\n}
           echo "::set-output name=body::$release_body"
-      - name: notify to Slack
-        id: slack
-        uses: tokorom/action-slack-incoming-webhook@main
-        env:
-          INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        with:
-          text: A release is published.
-          blocks: |
-            [
-              {
-                "type": "header",
-                "text": {
-                  "type": "plain_text",
-                  "text": "リリースノートが作成されました(${{ steps.create_release.outputs.tag_name }})"
-                }
-              },
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*Author:*\n${{ github.actor }}"
-                }
-              },
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "*リリース内容:*"
-                }
-              },
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "${{ steps.get_release_note.outputs.body }}"
-                }
-              },
-              {
-                "type": "actions",
-                "elements": [
-                  {
-                    "type": "button",
-                    "text": {
-                    "type": "plain_text",
-                    "text": "リリースノート詳細",
-                    "emoji": true
-                    },
-                    "value": "click_me_123",
-                    "url": "${{ steps.create_release.outputs.html_url }}"
-                  },
-                ]
-              }
-            ]
+      # - name: notify to Slack
+      #   id: slack
+      #   uses: tokorom/action-slack-incoming-webhook@main
+      #   env:
+      #     INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #   with:
+      #     text: A release is published.
+      #     blocks: |
+      #       [
+      #         {
+      #           "type": "header",
+      #           "text": {
+      #             "type": "plain_text",
+      #             "text": "リリースノートが作成されました(${{ steps.create_release.outputs.tag_name }})"
+      #           }
+      #         },
+      #         {
+      #           "type": "section",
+      #           "text": {
+      #             "type": "mrkdwn",
+      #             "text": "*Author:*\n${{ github.actor }}"
+      #           }
+      #         },
+      #         {
+      #           "type": "section",
+      #           "text": {
+      #             "type": "mrkdwn",
+      #             "text": "*リリース内容:*"
+      #           }
+      #         },
+      #         {
+      #           "type": "section",
+      #           "text": {
+      #             "type": "mrkdwn",
+      #             "text": "${{ steps.get_release_note.outputs.body }}"
+      #           }
+      #         },
+      #         {
+      #           "type": "actions",
+      #           "elements": [
+      #             {
+      #               "type": "button",
+      #               "text": {
+      #               "type": "plain_text",
+      #               "text": "リリースノート詳細",
+      #               "emoji": true
+      #               },
+      #               "value": "click_me_123",
+      #               "url": "${{ steps.create_release.outputs.html_url }}"
+      #             },
+      #           ]
+      #         }
+      #       ]
