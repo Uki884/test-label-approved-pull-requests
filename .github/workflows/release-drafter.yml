@@ -84,7 +84,7 @@ jobs:
                     "type": "button",
                     "text": {
                     "type": "plain_text",
-                    "text": "Productionリリース",
+                    "text": "Publish",
                     "emoji": true
                     },
                     "confirm": {
@@ -109,6 +109,16 @@ jobs:
                     "value": "${{ steps.create_release.outputs.id }}",
                     "action_id": "publish_release_note",
                   },
+                  {
+                    "type": "button",
+                    "text": {
+                    "type": "plain_text",
+                    "text": "View Details",
+                    "emoji": true
+                    },
+                    "value": "details",
+                    "url": "${{ steps.create_release.outputs.html_url }}"
+                  }
                 ]
               }
             ]
