@@ -117,7 +117,8 @@ jobs:
                     "emoji": true
                     },
                     "value": "details",
-                    "url": "${{ steps.create_release.outputs.html_url }}"
+                    "url": "${{ steps.create_release.outputs.html_url }}",
+                    "action_id": "release_note_detail",
                   }
                 ]
               }
