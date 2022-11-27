@@ -78,6 +78,7 @@ jobs:
               },
               {
                 "type": "actions",
+                "block_id": "publish_button_for_production",
                 "elements": [
                   {
                     "type": "button",
