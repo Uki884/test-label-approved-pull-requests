@@ -104,6 +104,7 @@ jobs:
                         "text": "OK",
                       },
                     },
+                    "style": "primary",
                     "value": "${{ steps.create_release.outputs.id }}",
                     "action_id": "publish_release_note",
                   },
