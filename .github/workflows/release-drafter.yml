@@ -84,7 +84,7 @@ jobs:
                     "type": "button",
                     "text": {
                     "type": "plain_text",
-                    "text": "Publish",
+                    "text": "Publish release",
                     "emoji": true
                     },
                     "confirm": {
@@ -94,7 +94,7 @@ jobs:
                       },
                       "text": {
                         "type": "plain_text",
-                        "text": "Productionリリースを開始しますか？",
+                        "text": "このリリースをPublishしますか？",
                       },
                       "deny": {
                         "type": "plain_text",
