@@ -79,17 +79,48 @@ jobs:
               },
               {
                 "type": "actions",
+                "block_id": "publish_button_for_production",
                 "elements": [
                   {
                     "type": "button",
                     "text": {
                     "type": "plain_text",
-                    "text": "リリースノート詳細",
+                    "text": "Publish release",
                     "emoji": true
                     },
-                    "value": "click_me_123",
-                    "url": "${{ steps.create_release.outputs.html_url }}"
+                    "confirm": {
+                      "title": {
+                        "type": "plain_text",
+                        "text": "確認",
+                      },
+                      "text": {
+                        "type": "plain_text",
+                        "text": "このリリースをPublishしますか？",
+                      },
+                      "deny": {
+                        "type": "plain_text",
+                        "text": "キャンセル",
+                      },
+                      "confirm": {
+                        "type": "plain_text",
+                        "text": "OK",
+                      },
+                    },
+                    "style": "primary",
+                    "value": "${{ steps.create_release.outputs.id }}",
+                    "action_id": "publish_release_note",
                   },
+                  {
+                    "type": "button",
+                    "text": {
+                    "type": "plain_text",
+                    "text": "View Details",
+                    "emoji": true
+                    },
+                    "value": "details",
+                    "url": "${{ steps.create_release.outputs.html_url }}",
+                    "action_id": "release_note_detail",
+                  }
                 ]
               }
             ]
