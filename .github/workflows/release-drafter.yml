@@ -25,6 +25,7 @@ jobs:
         with:
           name: ${{ steps.calver.outputs.tag_name }}
           tag: ${{ steps.calver.outputs.tag_name }}
+          commitish: 'master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Dump Github context
