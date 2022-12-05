@@ -40,87 +40,87 @@ jobs:
           release_body=${release_body//$'\r\n'/\\n}
           release_body=${release_body//$'\n'/\\n}
           echo "::set-output name=body::$release_body"
-      # - name: notify to Slack
-      #   id: slack
-      #   uses: tokorom/action-slack-incoming-webhook@main
-      #   env:
-      #     INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      #   with:
-      #     text: A release is published.
-      #     blocks: |
-      #       [
-      #         {
-      #           "type": "header",
-      #           "text": {
-      #             "type": "plain_text",
-      #             "text": "リリースノートが作成されました(${{ steps.create_release.outputs.tag_name }})"
-      #           }
-      #         },
-      #         {
-      #           "type": "section",
-      #           "text": {
-      #             "type": "mrkdwn",
-      #             "text": "*Author:*\n${{ github.actor }}"
-      #           }
-      #         },
-      #         {
-      #           "type": "section",
-      #           "text": {
-      #             "type": "mrkdwn",
-      #             "text": "*リリース内容:*"
-      #           }
-      #         },
-      #         {
-      #           "type": "section",
-      #           "text": {
-      #             "type": "mrkdwn",
-      #             "text": "${{ steps.get_release_note.outputs.body }}"
-      #           }
-      #         },
-      #         {
-      #           "type": "actions",
-      #           "block_id": "publish_button_for_production",
-      #           "elements": [
-      #             {
-      #               "type": "button",
-      #               "text": {
-      #               "type": "plain_text",
-      #               "text": "Publish release",
-      #               "emoji": true
-      #               },
-      #               "confirm": {
-      #                 "title": {
-      #                   "type": "plain_text",
-      #                   "text": "確認",
-      #                 },
-      #                 "text": {
-      #                   "type": "plain_text",
-      #                   "text": "このリリースをPublishしますか？",
-      #                 },
-      #                 "deny": {
-      #                   "type": "plain_text",
-      #                   "text": "キャンセル",
-      #                 },
-      #                 "confirm": {
-      #                   "type": "plain_text",
-      #                   "text": "OK",
-      #                 },
-      #               },
-      #               "style": "primary",
-      #               "value": "${{ steps.create_release.outputs.id }}",
-      #               "action_id": "publish_release_note",
-      #             },
-      #             {
-      #               "type": "button",
-      #               "text": {
-      #               "type": "plain_text",
-      #               "text": "View Details",
-      #               "emoji": true
-      #               },
-      #               "value": "details",
-      #               "url": "${{ steps.create_release.outputs.html_url }}",
-      #               "action_id": "release_note_detail",
-      #             }
-      #           ]
-      #         }
-      #       ]
+      - name: notify to Slack
+        id: slack
+        uses: tokorom/action-slack-incoming-webhook@main
+        env:
+          INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          text: A release is published.
+          blocks: |
+            [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "リリースノートが作成されました(${{ steps.create_release.outputs.tag_name }})"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Author:*\n${{ github.actor }}"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*リリース内容:*"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "${{ steps.get_release_note.outputs.body }}"
+                }
+              },
+              {
+                "type": "actions",
+                "block_id": "publish_button_for_production",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                    "type": "plain_text",
+                    "text": "Publish release",
+                    "emoji": true
+                    },
+                    "confirm": {
+                      "title": {
+                        "type": "plain_text",
+                        "text": "確認",
+                      },
+                      "text": {
+                        "type": "plain_text",
+                        "text": "このリリースをPublishしますか？",
+                      },
+                      "deny": {
+                        "type": "plain_text",
+                        "text": "キャンセル",
+                      },
+                      "confirm": {
+                        "type": "plain_text",
+                        "text": "OK",
+                      },
+                    },
+                    "style": "primary",
+                    "value": "${{ steps.create_release.outputs.id }}",
+                    "action_id": "publish_release_note",
+                  },
+                  {
+                    "type": "button",
+                    "text": {
+                    "type": "plain_text",
+                    "text": "View Details",
+                    "emoji": true
+                    },
+                    "value": "details",
+                    "url": "${{ steps.create_release.outputs.html_url }}",
+                    "action_id": "release_note_detail",
+                  }
+                ]
+              }
+            ]
