@@ -14,3 +14,4 @@ jobs:
           mode: exactly
           count: 1
           labels: "bugfix, feature, improvements"
+          add_comment: true
