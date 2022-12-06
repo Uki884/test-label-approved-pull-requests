@@ -13,4 +13,4 @@ jobs:
         with:
           mode: exactly
           count: 1
-          labels: "all, shop, staff, tpl, other, bug"
+          labels: "bugfix, feature, improvements"
