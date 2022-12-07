@@ -17,3 +17,11 @@ jobs:
           count: 1
           labels: "bugfix, feature, improvements"
           add_comment: true
+      - uses: mheap/github-action-required-labels@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          mode: exactly
+          count: 0
+          labels: "Do%20Not%20Merge"
+          add_comment: true
