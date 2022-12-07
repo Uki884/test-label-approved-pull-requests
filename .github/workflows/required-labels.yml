@@ -23,5 +23,5 @@ jobs:
         with:
           mode: exactly
           count: 0
-          labels: "Do%20Not%20Merge"
+          labels: "Do Not Merge"
           add_comment: true
