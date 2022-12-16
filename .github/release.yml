@@ -9,6 +9,12 @@ changelog:
     - title: Bug Fix 💊
       labels:
         - "bug"
+    - title: "Improvements ⚡️"
+      labels:
+        - "refactoring"
+    - title: "Dependencies 📦"
+      labels:
+        - "dependencies"
     - title: Other Changes 🛠
       labels:
         - "*"
