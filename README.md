@@ -4,6 +4,4 @@ tes
 あ
 ああ
 fasfa
-fasfafas
 fasfa
-fasfafsafsa
