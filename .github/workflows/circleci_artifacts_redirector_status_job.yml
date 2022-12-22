@@ -1,6 +1,5 @@
 name: circleci_artifacts_redirector_status_job
-on:
-  status
+on: [status]
 
 jobs:
   circleci_artifacts_redirector_job:
